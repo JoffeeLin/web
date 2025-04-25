@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>参数投票系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="ad-styles.css">
+</head>
+<body>
+    <header>
+        <h1>参数投票系统</h1>
+        <div class="user-info">
+            <span id="username-display"></span>
+            <button id="logout-button" style="display: none;">退出</button>
+            <button id="parameter-nav-button" style="display: none;">参数设置</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- 登录部分 -->
+        <section id="login-section">
+            <h2>用户登录</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-username">用户名</label>
+                    <input type="text" id="login-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">密码</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" id="login-button">登录</button>
+                <p>还没有账号？<a href="#" id="show-register">注册</a></p>
+            </form>
+        </section>
+
+        <!-- 注册部分 -->
+        <section id="register-section" style="display: none;">
+            <h2>用户注册</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-username">用户名</label>
+                    <input type="text" id="register-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">密码</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm-password">确认密码</label>
+                    <input type="password" id="register-confirm-password" required>
+                </div>
+                <button type="submit" id="register-button">注册</button>
+                <p>已有账号？<a href="#" id="show-login">登录</a></p>
+            </form>
+        </section>
+
+        <!-- 投票列表部分 -->
+        <section id="polls-list-section" style="display: none;">
+            <div class="section-header">
+                <h2>参数投票列表</h2>
+                <button id="create-poll-button">创建新投票</button>
+            </div>
+            <div id="polls-container" class="polls-container">
+                <!-- 投票卡片将在这里动态生成 -->
+            </div>
+        </section>
+
+        <!-- 创建投票部分 -->
+        <section id="create-poll-section" style="display: none;">
+            <h2>创建参数投票</h2>
+            <form id="create-poll-form">
+                <div class="form-group">
+                    <label for="poll-title">投票标题</label>
+                    <input type="text" id="poll-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="poll-description">投票描述</label>
+                    <textarea id="poll-description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="poll-duration">投票持续时间</label>
+                    <select id="poll-duration" required>
+                        <option value="30seconds">30秒（测试用）</option>
+                        <option value="1day">1天</option>
+                        <option value="3days">3天</option>
+                        <option value="7days" selected>7天</option>
+                        <option value="14days">14天</option>
+                        <option value="30days">30天</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>投票选项</label>
+                    <div id="poll-options">
+                        <div class="option-input">
+                            <input type="text" class="poll-option" required placeholder="选项1">
+                            <button type="button" class="remove-option">删除</button>
+                        </div>
+                        <div class="option-input">
+                            <input type="text" class="poll-option" required placeholder="选项2">
+                            <button type="button" class="remove-option">删除</button>
+                        </div>
+                    </div>
+                    <button type="button" id="add-option">添加选项</button>
+                </div>
+                <div class="form-actions">
+                    <button type="submit">创建投票</button>
+                    <button type="button" id="cancel-create-poll">取消</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- 投票详情部分 -->
+        <section id="poll-detail-section" style="display: none;">
+            <div class="section-header">
+                <h2 id="poll-detail-title"></h2>
+                <button id="back-to-polls">返回列表</button>
+            </div>
+            <div id="poll-detail-content">
+                <p id="poll-detail-description"></p>
+                <div id="poll-detail-meta">
+                    <p>创建者: <span id="poll-detail-creator"></span></p>
+                    <p>结束日期: <span id="poll-detail-end-date"></span></p>
+                    <p>状态: <span id="poll-detail-status"></span></p>
+                </div>
+                <div id="poll-detail-options">
+                    <!-- 投票选项将在这里动态生成 -->
+                </div>
+                <div id="poll-detail-results">
+                    <h3>当前结果</h3>
+                    <div id="poll-results-container">
+                        <!-- 投票结果将在这里动态生成 -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 参数设置部分 -->
+        <section id="parameter-section" style="display: none;">
+            <h2>网站参数设置</h2>
+            <p>在这里，您可以查看当前网站参数并创建参数投票。</p>
+            
+            <div class="parameter-tabs">
+                <button class="param-tab-button" data-tab="ui">界面设置</button>
+                <button class="param-tab-button" data-tab="features">功能设置</button>
+                <button class="param-tab-button" data-tab="system">系统设置</button>
+            </div>
+            
+            <div id="ui-parameters" class="parameter-tab-content">
+                <!-- UI参数将在这里动态生成 -->
+            </div>
+            
+            <div id="features-parameters" class="parameter-tab-content" style="display: none;">
+                <!-- 功能参数将在这里动态生成 -->
+            </div>
+            
+            <div id="system-parameters" class="parameter-tab-content" style="display: none;">
+                <!-- 系统参数将在这里动态生成 -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>参数投票系统 &copy; 2025</p>
+        <p>本网站的所有参数都由用户投票决定</p>
+    </footer>
+
+    <!-- 广告容器 -->
+    <div id="ad-container" class="ad-container">
+        <div class="ad-header">
+            <span class="ad-title">赞助内容</span>
+            <button id="close-ad" class="close-ad">×</button>
+        </div>
+        <div id="ad-content" class="ad-content">
+            <!-- 广告内容将在这里动态生成 -->
+        </div>
+    </div>
+
+    <!-- 通知容器 -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <!-- 欢迎提示 -->
+    <div id="welcome-tip" class="welcome-tip">
+        <p>欢迎使用参数投票系统</p>
+        <p>本网站的所有参数都由用户投票决定，请前往参数设置页面参与投票！</p>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="realtime-voting.js"></script>
+    <script src="realtime-integration.js"></script>
+    <script src="mobile-touch.js"></script>
+    <script src="advertisement.js"></script>
+    <script src="expanded-parameters.js"></script>
+    <script src="enhanced-realtime-feedback.js"></script>
+    <script src="collective-decision-system.js"></script>
+    <script src="mobile-experience.js"></script>
+    <script src="enhanced-advertisement.js"></script>
+    <script src="parameter-validation.js"></script>
+    <script src="parameter-test.js"></script>
+    <script src="app-extension.js"></script>
+    <script src="poll-deletion.js"></script>
+    <script src="poll-cleanup.js"></script>
+</body>
+</html>

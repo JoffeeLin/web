@@ -1,0 +1,9 @@
+# 确保在public目录中有一个netlify.toml文件
+[build]
+  publish = "/"
+  command = ""
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

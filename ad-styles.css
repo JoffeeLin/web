@@ -1,0 +1,187 @@
+/* 添加广告样式 */
+.ad-container {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px 0;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+/* 广告标识 */
+.ad-container::before {
+  content: '广告';
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  font-size: 10px;
+  padding: 2px 5px;
+  border-bottom-left-radius: 5px;
+  z-index: 1;
+}
+
+/* 侧边栏广告样式 */
+.ad-sidebar {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  max-width: 100%;
+  z-index: 90;
+}
+
+/* 横幅广告样式 */
+.ad-banner {
+  position: relative;
+  width: 100%;
+  max-width: 728px;
+  margin: 20px auto;
+  z-index: 80;
+}
+
+/* 页脚广告样式 */
+.ad-footer {
+  width: 100%;
+  max-width: 728px;
+  margin: 10px auto;
+  background-color: rgba(0,0,0,0.05);
+}
+
+/* 图片广告样式 */
+.ad-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* 文字广告样式 */
+.ad-text {
+  padding: 10px;
+  text-align: left;
+}
+
+.ad-text-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: var(--primary-color, #4a90e2);
+}
+
+.ad-text-description {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.ad-text-link {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: var(--primary-color, #4a90e2);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+/* 关闭按钮 */
+.ad-close {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  font-size: 10px;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 1;
+  border-bottom-right-radius: 5px;
+}
+
+/* 移动端触摸优化 */
+.touch-device button,
+.touch-device input[type="submit"],
+.touch-device .poll-card,
+.touch-device .view-poll-btn,
+.touch-device .parameter-category,
+.touch-device .close-notification,
+.touch-device a,
+.touch-device .ad-close {
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  touch-action: manipulation;
+}
+
+/* 增大触摸目标区域 */
+.touch-device button,
+.touch-device input[type="submit"],
+.touch-device .view-poll-btn {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 12px 16px;
+  margin: 8px 0;
+}
+
+/* 触摸反馈效果 */
+.touch-device button:active,
+.touch-device input[type="submit"]:active,
+.touch-device .poll-card:active,
+.touch-device .view-poll-btn:active,
+.touch-device .parameter-category:active,
+.touch-device .ad-close:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+  transition: transform 0.1s, opacity 0.1s;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .ad-sidebar {
+    position: static;
+    width: 100%;
+    max-width: 300px;
+    margin: 10px auto;
+    transform: none;
+  }
+  
+  .ad-banner {
+    max-width: 100%;
+  }
+  
+  .touch-device header {
+    padding: 10px;
+  }
+  
+  .touch-device nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .touch-device nav button {
+    margin: 4px;
+    flex-grow: 1;
+    max-width: 120px;
+  }
+}
+
+/* 暗黑模式支持 */
+.dark-mode .ad-container {
+  background-color: #2c2c2c;
+}
+
+.dark-mode .ad-text-title {
+  color: var(--primary-color, #4a90e2);
+}
+
+.dark-mode .ad-text-description {
+  color: #e0e0e0;
+}
